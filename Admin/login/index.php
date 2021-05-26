@@ -8,4 +8,4 @@
     $con = new mysqli("localhost", "root", "", "login");
 ?>
 
-Welcome <?php echo$_SESSION['username']; ?> <a href="logout.php">Logout</a>
+Welcome <?php echo$_SESSION['email']; ?> <a href="logout.php">Logout</a>
