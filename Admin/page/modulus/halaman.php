@@ -15,7 +15,7 @@
 
         //kategori
         case 'kategori';
-            include 'page/keloladmin/dataadmin.php';
+            include '../page/keloladmin/dataadmin.php';
             break;
 
         //tambah data

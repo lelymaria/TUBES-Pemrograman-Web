@@ -1,15 +1,12 @@
-<?php
+    <?php
     session_start();
 
-        if (isset($_SESSION['login'])) {
-            echo "<script>alert('logout dahulu');</script>";
-            echo "<script>window.location.replace('index.php');</script>";
+    if (isset($_SESSION['admin'])) {
+        echo "<script>alert('Logout Dahulu');</script>";
+        echo "<script>window.location.replace('../page/index.php');</script>";
     }
 
-    include 'config/koneksi.php'
-?>
-
-    <?php
+    include '../../config/koneksi.php';
     if (isset($_POST["btn_login"])) {
         $email = $_POST["email"];
         $password = $_POST["password"];
@@ -19,10 +16,18 @@
         if (mysqli_num_rows($result) === 1 ) {
             $data = mysqli_fetch_assoc($result);
             if (password_verify($password, $data['password'])) {
-                $_SESSION['login'] = true;
-                $_SESSION['email'] = $data['email'];
-                echo "<script>alert('Berhasil Login');</script>";
-                echo "<script>window.location.replace('index.php');</script>";
+
+                if ($data['id_role'] == 1) {
+                    $_SESSION['admin'] = true;
+                    $_SESSION['email'] = $data['email'];
+                    $_SESSION['id_role'] = $data['id_role'];
+                    echo "<script>alert('Berhasil Login');</script>";
+                    echo "<script>window.location.replace('../page/index.php');</script>";
+                } else {
+                    echo "<script>alert('Harap Login Dahulu');</script>";
+                    echo "<script>window.location.replace('login.php');</script>";
+                }
+                
             }else{
                 echo "<script>alert('Gagal  Login');</script>";
                 echo "<script>window.location.replace('login.php');</script>";
@@ -47,7 +52,7 @@
     margin: 0;
 }
 body{
-    background-image: url('background1.jpg');
+    background-image: url('img/background1.jpg');
     background-size: cover;
 }
 form{
@@ -105,15 +110,12 @@ input.cb_agree{
     font-weight:400px;
     text-decoration:none;
 }
-.acount{
-    text-decoration:none;
-}
     </style>
 </head>
 <body>
     <form method="POST">
         <div class="header">
-            Login
+            Login Admin
         </div>
 
         <div class="container">
@@ -123,7 +125,6 @@ input.cb_agree{
 
         <button class="bt_signup" name="btn_login">Sign In</button>
         <br>
-        <a href="register.php" class="acount">Belum Punya Akun ?</a>
         <div class="btn"><a href="../../LandingPage/index.html">Kembali</a></div>
     </form>
 </body>

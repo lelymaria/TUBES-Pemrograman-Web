@@ -8,6 +8,7 @@
 
     include 'config/koneksi.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
     margin: 0;
 }
 body{
-    background-image: url('background.jpg');
+    background-image: url('img/background.jpg');
     background-size: cover;
 }
 form{
@@ -94,29 +95,20 @@ input.cb_agree{
             <input type="text" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
             <input type="password" name="confirm_password" placeholder="Confirm Password">
+            <br>
+            <select name="id_role" style="width: 76%; padding: 10px">
+                <option value="">- Pilih -</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
         </div>
+        
 
         <button type="submit" name="bt_signup" class="bt_signup">Sign Up</button>
         <br>
         <a href="login.php" class="acount">Sudah Punya Akun ?</a>
         <div class="btn"><a href="../../LandingPage/index.html">Kembali</a></div>
     </form>
-    <!-- <div class="kotak_login">
-        <p class="tulisan_login"> Silahkan Login </p>
-
-        <form action="" method="POST">
-            <label for="">Username</label>
-            <input type="text" name="username" class="form_login">
-            
-            <label for="">Password</label>
-            <input type="password" name="password" class="form_login">
-
-            <label for="">Confirm Password</label>
-            <input type="password" name="confirm_password" class="form_login">
-
-            <input type="submit" name="btn-register" class="tombol_login" value="REGISTER">
-        </form>
-    </div> -->
 
     <?php
 
@@ -125,7 +117,8 @@ input.cb_agree{
             $email = $_POST['email'];
             $password = mysqli_real_escape_string($con, $_POST['password']);
             $confirm_password = $_POST['confirm_password'];
- 
+            $id_role = $_POST['id_role'];
+
             $result = $con->query("SELECT email FROM tb_login WHERE email = '$email'");
 
             if (mysqli_fetch_assoc($result) > 0) {
@@ -138,11 +131,11 @@ input.cb_agree{
             }
 
             $password = password_hash($password, PASSWORD_DEFAULT);
-            $query = $con->query("INSERT INTO tb_login VALUES('', '$email', '$password')");
+            $query = $con->query("INSERT INTO tb_login VALUES('', '$email', '$password', '$id_role')");
 
             if ($query != 0) {
                 echo "<script>alert('Berhasil');</script>";
-                echo "<script>window.location.replace('register.php');</script>";
+                echo "<script>window.location.replace('login.php');</script>";
             } else {
                 echo "<script>alert('Gagal');</script>";
                 echo "<script>window.location.replace('register.php');</script>";
