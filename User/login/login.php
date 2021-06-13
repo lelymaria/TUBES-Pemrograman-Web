@@ -27,7 +27,7 @@
                     echo "<script>window.location.replace('../index.php');</script>";    
                 } else {
                     
-                    echo "<script>alert('Gagal ya , gagal ya, gagal lah masa engga wkwk');</script>";
+                    echo "<script>alert('Gagal Login!!!');</script>";
                     echo "<script>window.location.replace('login.php');</script>";
 
                 }

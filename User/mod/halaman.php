@@ -13,9 +13,13 @@
             include "page/dashboard.php";
             break;
 
-        case 'formulir' :
-            include "page/formulir/formulir.php";
+        case 'event' :
+            include "page/event/data_event.php";
             break;
+        
+            case 'ganti-password' :
+                include "page/ganti-password/ganti-password.php";
+                break;
         
         default:
             echo "404 Not Found";

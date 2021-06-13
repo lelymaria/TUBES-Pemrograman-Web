@@ -24,13 +24,10 @@ if($request == 2){
 	$email = $data->email;
     $password = "user";
 
-    $password = password_hash($password, PASSWORD_DEFAULT);b\
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
-
- swzgvhnm,./
-	$sq = $con->query("INSERT INTO data_user VALUES ('', '$nama', '$nik', '$no_hp', '$jenis_kelamin', '$tujuan', '$tanggal_lahir', '$alamat_rumah', 0)");
-    $id_user = insert_id($sq);
-    $sql = $con->query("INSERT INTO tb_login (id, email, password, id_role, id_user) VALUES ('', '$email', '$password', 2, $sq) ");
+	$sql = $con->query("INSERT INTO data_user VALUES ('', '$nama', '$nik', '$no_hp', '$jenis_kelamin', '$tujuan', '$tanggal_lahir', '$alamat_rumah', 0 ,'$email', '$password')");
+    
     if ($sql != 0) {
         echo 1;
     } else {

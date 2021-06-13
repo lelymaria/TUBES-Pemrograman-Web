@@ -34,7 +34,7 @@
 			</li>
 			<hr>
 			<li class="menu-item">
-				<a href="?page=formulir" class="dropdown-toggle">Formulir Pendaftaran</a>
+				<a href="?page=event" class="dropdown-toggle">Event XTC</a>
 			</li>
 			<hr>
 			<li class="menu-item">

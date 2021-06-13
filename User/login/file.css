@@ -1,0 +1,45 @@
+body{
+    background-image: url('background.jpg');
+    width: 500px;
+    height: 300px;
+    margin: 10 auto;
+    opacity: 0.9;
+    border: #00868b;
+    margin-top: 100px;
+    box-sizing: 50px;
+}
+
+.container{
+    background:#ffffff;
+    border: #00868b;
+    width: 360px;
+    margin: 30px auto 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgb(0, 0, 0.6);
+}
+
+.judul{
+    color:#4d4d4d;
+    font-weight: 20px;
+    line-height: 10px;
+    display: inline-block;
+    
+}
+/* 
+.konten{
+    background: #1a1a1a;
+    padding: 7px 7px;
+    height: 40px;
+} */
+
+.lock{
+    display: inline-block;
+    width: 20px;
+    height: 10px;
+    margin-top: 10px;
+    float: center;
+    margin-right: 40px;
+    border: #00868b;
+}
+

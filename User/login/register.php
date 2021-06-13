@@ -14,13 +14,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="file.css">
+    <title>Formulir</title>
 </head>
 <body>
 <div class="container">
     <div class="konten">
-                <div class="horizontal"  id="data"   >      
+    <div class="lock"></div>
+    <h2 class="judul">Form Member Account</h2> 
+                <div class="horizontal" id="data">
+                <fieldset>
+                    <legend>Data Account</legend>
+                    <table>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td><input type="email" name="email" id="email"  placeholder="Masukan Email Anda"></td>
+                    </tr>
+                    </table>
+                </fieldset>    
                     <fieldset>
                         <legend>Data Pribadi</legend>
                             <table>
@@ -49,9 +61,9 @@
                                 <td>:</td>
                                 <td>
                                     <select name="jenis_kelamin" id="jenis_kelamin">
-                                      <option value="">- Pilih -</option>
-                                      <option value="Laki-Laki">Laki - Laki</option>
-                                      <option value="Perempuan">Perempuan</option>
+                                        <option value="">- Pilih -</option>
+                                        <option value="Laki-Laki">Laki - Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
                                     </select>
                                 </td>   
                             </tr>
@@ -65,15 +77,9 @@
                                 <td>:</td>
                                 <td><input type="textarea" name="tujuan" id="tujuan"  placeholder="Tujuan join member ini"></td>
                             </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>:</td>
-                                <td><input type="email" name="email" id="email"  placeholder="Tujuan join member ini"></td>
-                            </tr>
                             </table>
                             <div class="grup-offset">
                             <button name="submit" id="submit" onclick='daftar()'  >Submit</button>
-                            <button type="reset" >Reset</button>
                         </div>
                     </fieldset>
                 </div>
