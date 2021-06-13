@@ -80,6 +80,9 @@
                             </table>
                             <div class="grup-offset">
                             <button name="submit" id="submit" onclick='daftar()'  >Submit</button>
+                            <br>
+                            <a href="login.php" class="acount">Sudah Punya Akun ?</a>
+                                <div class="btn"><a href="../../LandingPage/index.php">Kembali ke Home</a></div>
                         </div>
                     </fieldset>
                 </div>

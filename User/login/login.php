@@ -132,7 +132,7 @@ input.cb_agree{
         <button class="bt_signup" name="btn_login">Sign In</button>
         <br>
         <a href="register.php" class="acount">Belum Punya Akun ?</a>
-        <div class="btn"><a href="../../LandingPage/index.html">Kembali</a></div>
+        <div class="btn"><a href="../../LandingPage/index.php">Kembali</a></div>
     </form>
 </body>
 </html>
