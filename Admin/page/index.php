@@ -41,6 +41,10 @@
 			</li>
 			<hr>
 			<li class="menu-item">
+				<a href="?page=event" class="dropdown-toggle"> Event XTC </a>
+			</li>
+			<hr>
+			<li class="menu-item">
 				<a href="?page=keloladmin" class="dropdown-toggle">Kelola Admin</a>
 			</li>
 			<hr>

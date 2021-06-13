@@ -3,7 +3,7 @@
         .form{
           display:none;
         }
-        #btn_edit{
+        .btn_update{
             background: green;
             color:white;
             text-decoration:none;
@@ -12,7 +12,7 @@
             border-radius:5px;
             font-size:12px;
         }
-		#btn{
+		.btn_tambah{
             background: blue;
             color:white;
             text-decoration:none;
@@ -55,6 +55,7 @@
           margin:auto 20px;
         }
 
+		
 		input,
  textarea {
     width: 100%;
@@ -78,25 +79,25 @@
     <table>
         <input type="hidden" id="id">
         <tr>
-          <td>Username</td>
+          <td>Nama Acara</td>
           <td>:</td>
           <td>
-            <input type="text" id="email">
+            <input type="text" id="nama_acara">
           </td>
         </tr>
         <tr>
-          <td>Password</td>
+          <td>Tanggaal Acara</td>
           <td>:</td>
           <td>
-            <input type="password" id="password">
+            <input type="date" id="tanggal_acara">
           </td>
         </tr>
         <tr>
           <td>
-            <button id="btn" onclick="insert()">
+            <button class="btn_tambah" id="btn" onclick="insert()">
               Tambah
             </button>
-            <button class="btn_edit" id="btn_update" onclick="update()" hidden>
+            <button class="btn_update" id="btn_update" onclick="update()" hidden>
               Update
             </button>
           </td>
@@ -105,13 +106,14 @@
     
     <div class="konten" style="padding: 1px 0px 10px 10px;">
     <div class="kotak">
-      	<div class="kiri"> <h3>Kelola Admin</h3></div>
+      	<div class="kiri"> <h3>Kelola Event</h3></div>
     </div>
         <table id="data" border="1" width="100%" cellpadding="10" cellspacing="0">
             <thead style="background-color: black; color: white; ">
                 <tr>
                     <th align="center">No.</th>
-                    <th>Nama User</th>
+                    <th>Nama Acara</th>
+                    <th>Tanggal Acara</th>
                     <th align="center">Aksi</th>
                 </tr>
             </thead>
@@ -133,7 +135,7 @@
 
 	function load() {
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/keloladmin/ajax.php?request=1", true);
+		xhttp.open("GET", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/event/ajax.php?request=1", true);
 
 		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
@@ -151,12 +153,14 @@
 
 						var NewRow = empTable.insertRow(-1); 
 						let nomer = NewRow.insertCell(0);
-						var email = NewRow.insertCell(1);
-						var aksi_cell = NewRow.insertCell(2);
+						var nama_acara = NewRow.insertCell(1);
+                        let tanggal_acara = NewRow.insertCell(2);
+						var aksi_cell = NewRow.insertCell(3);
 
 						nomer.innerHTML = val['nomer'];
-						email.innerHTML = val['email']; 
-						aksi_cell.innerHTML = '<button onclick="edit('+ val['id'] +')" id="btn_edit">Edit</button> &bull; <button class="btn_delete" onclick="hapus('+ val['id'] +')">Hapus</button>'; 
+                        nama_acara.innerHTML = val['nama_acara'];
+                        tanggal_acara.innerHTML = val['tanggal_acara'];
+						aksi_cell.innerHTML = '<button class="btn_update" onclick="edit('+ val['id'] +')" id="btn_edit">Edit</button> &bull; <button class="btn_delete" onclick="hapus('+ val['id'] +')">Hapus</button>'; 
 
 					}
 				} 
@@ -171,14 +175,14 @@
 
 	function insert() {
 
-		var email = document.getElementById('email').value;
-		var password = document.getElementById('password').value;
+		var nama_acara = document.getElementById('nama_acara').value;
+        var tanggal_acara = document.getElementById('tanggal_acara').value;
 
-		if(email != '' && password !=''){
+		if(nama_acara != '' && tanggal_acara !=''){
 
-			var data = { email : email, password : password };
+			var data = { nama_acara : nama_acara, tanggal_acara : tanggal_acara };
 			var xhttp = new XMLHttpRequest();
-			xhttp.open("POST", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/keloladmin/ajax.php?request=2", true);
+			xhttp.open("POST", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/event/ajax.php?request=2", true);
 
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
@@ -189,8 +193,8 @@
 
 						load();
 
-						document.getElementById("email").value = "";
-						document.getElementById("password").value = "";
+						document.getElementById("nama_acara").value = "";
+						document.getElementById("tanggal_acara").value = "";
 					}
 				}
 			};
@@ -203,8 +207,8 @@
 	}
 
 	function edit(id) {
-		var email = document.getElementById('email');
-		var password = document.getElementById('password');
+		var tanggal_acara = document.getElementById('tanggal_acara');
+        let nama_acara = document.getElementById('nama_acara');
 		var btn = document.getElementById('btn');
 		var btn_edit = document.getElementById('btn_edit');
 		var btn_update = document.getElementById('btn_update');
@@ -213,7 +217,7 @@
 		btn_update.hidden = false;
 
 		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/keloladmin/ajax.php?request=4&id="+id, true);
+		xhttp.open("GET", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/event/ajax.php?request=4&id="+id, true);
 
 		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
@@ -226,8 +230,9 @@
 					if (response.hasOwnProperty(key)) {
 						var val = response[key];
 
-						email.value = val['email']; 
-						password.value = val['password'];
+						
+                        nama_acara.value = val['nama_acara'];
+                        tanggal_acara.value = val['tanggal_acara']; 
 						document.getElementById("id").value = val['id'];
 
 					}
@@ -244,7 +249,7 @@
 		var konfirmasi = confirm("Yakin ? Mau di Hapus ?");
 
 		if (konfirmasi) {
-			xhttp.open("GET", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/keloladmin/ajax.php?request=3&id="+id, true);
+			xhttp.open("GET", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/event/ajax.php?request=3&id="+id, true);
 
 			xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
@@ -268,15 +273,15 @@
 	function update() {
 
 		var id = document.getElementById('id').value;
-		var email = document.getElementById('email').value;
-		var password = document.getElementById('password').value;
+		var nama_acara = document.getElementById('nama_acara').value;
+        var tanggal_acara = document.getElementById('tanggal_acara').value;
 
 
-		if(email != '' && password !=''){
+		if(nama_acara != '' && tanggal_acara !=''){
 
-			var data = { id : id, email : email, password : password};
+			var data = { id : id, nama_acara : nama_acara, tanggal_acara : tanggal_acara};
 			var xhttp = new XMLHttpRequest();
-			xhttp.open("POST", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/keloladmin/ajax.php?request=5", true);
+			xhttp.open("POST", "http://localhost/TUBES-Pemrograman-Web/Admin/page/page/event/ajax.php?request=5", true);
 
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {

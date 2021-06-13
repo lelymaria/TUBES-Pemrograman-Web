@@ -28,6 +28,10 @@
         case 'keloladmin':
             include "page/keloladmin/dataadmin.php";
             break;
+        
+        case 'event' :
+            include "page/event/data_event.php";
+            break;
 
         default:
             echo "404 Not Found";

@@ -105,8 +105,17 @@ if ($request == 6) {
 	$id = $_GET['id'];
 
 	$sql = $con->query("UPDATE data_user SET status = 1 WHERE id = $id");
-
-	if($sql){
+	$data_sql = $con->query("SELECT * FROM data_user WHERE id = $id ");
+	$sql_data = $data_sql->fetch_assoc();
+	$email = $sql_data['email'];
+	$password = "user";
+	date_default_timezone_set("Asia/Jakarta");
+	$tanggal_daftar = date("Y-m-d H:i:s");
+	$password = password_hash($password, PASSWORD_DEFAULT);
+	
+	$data = $con->query("INSERT INTO tb_login (id, email, password, tanggal_daftar, id_role) VALUES ('', '$email', '$password', '$tanggal_daftar', 2) ");
+	
+	if($data){
 	    echo 1; 
 	}else{
 	    echo 0;
@@ -119,6 +128,8 @@ if ($request == 7) {
 
 	$id = $_GET['id'];
 
+	$data_user = $con->query("SELECT * FROM data_user = '");
+
 	$sq = $con->query("UPDATE data_user SET status = 0 WHERE id = $id");
 	$sql = $con->query("DELETE FROM tb_login WHERE id = $id ");
 
@@ -128,5 +139,27 @@ if ($request == 7) {
 	    echo 0;
 	}
 
+	exit;
+}
+
+if($request == 8){
+
+	$sql = "SELECT * FROM data_user WHERE status = 1";
+	$employeeData = mysqli_query($con,$sql);
+
+	$response = array();
+	
+	$no = 1;
+	while($row = mysqli_fetch_assoc($employeeData)){
+		$response[] = array(
+			"nomer" => $no++,
+			"id" => $row['id'],
+			"nama" => $row['nama'],
+			"tanggal_lahir" => $row['tanggal_lahir'],
+			"jenis_kelamin" => $row['jenis_kelamin']
+		);
+	}
+
+	echo json_encode($response);
 	exit;
 }
